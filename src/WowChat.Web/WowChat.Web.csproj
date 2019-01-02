@@ -114,6 +114,20 @@
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WowChat.Common\WowChat.Common.csproj">
+      <Project>{8dbe577b-1771-4af3-8bd4-07656b89322a}</Project>
+      <Name>WowChat.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WowChat.IBLL\WowChat.IBLL.csproj">
+      <Project>{4bd24a1e-fefc-4a17-b835-95d4b54eb390}</Project>
+      <Name>WowChat.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WowChat.Model\WowChat.Model.csproj">
+      <Project>{0f2c493b-fa6d-438b-b04d-188778f868fd}</Project>
+      <Name>WowChat.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
