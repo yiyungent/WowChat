@@ -40,7 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User_infoDal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WowChat.IDAL\WowChat.IDAL.csproj">
+      <Project>{72b07317-5f6c-4452-bbe9-a78a133a7992}</Project>
+      <Name>WowChat.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WowChat.Model\WowChat.Model.csproj">
+      <Project>{0f2c493b-fa6d-438b-b04d-188778f868fd}</Project>
+      <Name>WowChat.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

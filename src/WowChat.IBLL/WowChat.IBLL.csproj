@@ -40,17 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUser_infoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WowChat.BLL\WowChat.BLL.csproj">
-      <Project>{ab5b86fe-a4fd-4183-8835-fb75f129b456}</Project>
-      <Name>WowChat.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WowChat.Common\WowChat.Common.csproj">
-      <Project>{8dbe577b-1771-4af3-8bd4-07656b89322a}</Project>
-      <Name>WowChat.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WowChat.Model\WowChat.Model.csproj">
       <Project>{0f2c493b-fa6d-438b-b04d-188778f868fd}</Project>
       <Name>WowChat.Model</Name>
