@@ -89,11 +89,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\base.css" />
+    <Content Include="css\login.css" />
     <Content Include="Global.asax" />
+    <None Include="Scripts\jquery-1.11.3.intellisense.js" />
+    <Content Include="images\scripts\detect-c.png" />
+    <Content Include="images\scripts\input-error.png" />
+    <Content Include="images\scripts\truev.png" />
+    <Content Include="js\dist\jquery-1.11.3.min.js" />
+    <Content Include="js\login.js" />
+    <Content Include="Scripts\jquery-1.11.3.js" />
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -102,6 +114,9 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.11.3.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,7 +126,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

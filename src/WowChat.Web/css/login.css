@@ -1,0 +1,125 @@
+﻿.outer {
+	width: 980px;
+	margin: 0 auto;
+}
+.login-left {
+	float: left;
+	width: 489px;
+	height: 800px; /**/
+}
+.line {
+	float: left;
+	border-right: 1px solid #ddd;
+	height: 300px;
+	margin-top: 28px;
+}
+.login-right {
+	float: left;
+	padding-left: 45px;
+	width: 490px;
+	box-sizing: border-box;
+}
+.form-login {
+	padding-top: 28px;
+	width: 445px;
+}
+.input-box .item {
+	height: 66px;
+}
+.input-box .item input {
+	display: inline-block;
+	width: 388px;
+	height: 18px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.verify-holder {
+	width: 410px;
+	height: 40px;
+	position: relative;
+}
+.verify-detect, .verify-success {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 408px;
+	line-height: 38px;
+	outline: none;
+	text-align: center;
+	font-size: 14px;
+	cursor: pointer;
+}
+.verify-detect {
+	background-image: linear-gradient(180deg, #ffffff 0%,#f3f3f3 100%);
+	color: #666;
+	border: 1px solid #ccc;
+}
+.verify-success {
+	background-color: #eefff5;
+	color: #18A452;
+	border: 1px solid #18A452;
+}
+.verify-box {
+	display: block;
+	position: absolute;
+	top: 14px;
+	left: 34px;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+}
+.verify-box-detect {
+	background: url(/images/scripts/detect-c.png) no-repeat left bottom;
+}
+.verify-box-success {
+	background: url(/images/scripts/truev.png) no-repeat left bottom;
+}
+.remember {
+	/*margin: 10px 0;*/
+	color: #717171;
+	width: 410px;
+	font-size: 12px;
+}
+.remember span {
+	color: #bbb;
+	margin-left: 10px;
+}
+.forget-password {
+	float: right;
+}
+.remember a {
+	color: #00a1d6;
+}
+.btn-box {
+	padding-top: 10px;
+}
+.btn {
+	display: inline-block;
+	width: 184px;
+	height: 36px;
+	border-radius: 2px;
+	border: 1px solid #0381aa;
+	background: #00a7de;
+	cursor: pointer;
+	text-align: center;
+	line-height: 36px;
+	font-size: 14px;
+	color: #fff;
+}
+.btn:hover {
+	color: #fff;
+	background: #00bee7;
+}
+.btn-reg {
+	margin-left: 34px;
+	background: #fff;
+	border: 1px solid #ccc;
+	color: #555;
+}
+.btn-reg:hover {
+	background: #f7f7f7;
+	color: #555;
+}

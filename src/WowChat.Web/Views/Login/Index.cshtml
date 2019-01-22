@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>登录</title>
+	<link href="~/css/base.css" rel="stylesheet" />
+	<link href="~/css/login.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="outer">
+		<div class="login-left"></div>
+		<div class="line"></div>
+		<div class="login-right">
+			<div class="form-login">
+				<div class="input-box">
+					<ul>
+						<li class="item">
+							<input type="text" name="userName" placeholder="手机号/邮箱" value="" />
+							<span class="status"></span>
+						</li>
+						<li class="item">
+							<input type="password" name="password" placeholder="密码" value="" />
+							<span class="status"></span>
+						</li>
+						<li class="item">
+							<div class="verify-holder">
+								<div id="btnVerifyCode" class="verify-detect" onclick="return false">点击验证</div>
+								<span id="verify-box" class="verify-box verify-box-detect"></span>
+							</div>
+							<div>
+								<input id="inputTicket" name="inputTicket" type="hidden" />
+								<input id="inputRandstr" name="inputRandstr" type="hidden" />
+							</div>
+						</li>
+						<li class="remember">
+							<label>
+								<input type="checkbox" name="isRem" value="isRem" />
+								记住我
+								<span>不是自己的电脑上不要勾选此项</span>
+								<a target="_blank" href="/login/findpassword" class="forget-password">找回密码?</a>
+							</label>
+						</li>
+						<li class="btn-box">
+							<a class="btn btn-login">登录</a>
+							<a href="/login/register" class="btn btn-reg">注册</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="~/js/dist/jquery-1.11.3.min.js"></script>
+	<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+	<script src="~/js/login.js"></script>
+</body>
+</html>
