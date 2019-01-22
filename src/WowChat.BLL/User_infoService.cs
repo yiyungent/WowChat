@@ -14,9 +14,8 @@ namespace WowChat.BLL
     {
         private IUser_infoDal _dal;
 
-        public User_infoService(IUser_infoDal dal)
+        public User_infoService()
         {
-            _dal = dal;
         }
 
         public List<User_info> GetList()
