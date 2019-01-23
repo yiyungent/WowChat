@@ -12,7 +12,7 @@ namespace WowChat.BLL
 {
     public class User_infoService : IUser_infoService
     {
-        private IUser_infoDal _dal;
+        private IUser_infoDal _dal = new DAL.User_infoDal();
 
         public User_infoService()
         {
@@ -21,6 +21,11 @@ namespace WowChat.BLL
         public List<User_info> GetList()
         {
             return _dal.GetList();
+        }
+
+        public User_info GetByPhoneOrEmail(string phoneOrEmail)
+        {
+            return this._dal.GetByPhoneOrEmail(phoneOrEmail);
         }
     }
 }

@@ -11,5 +11,7 @@ namespace WowChat.IBLL
     public interface IUser_infoService
     {
         List<User_info> GetList();
+
+        User_info GetByPhoneOrEmail(string phoneOrEmail);
     }
 }

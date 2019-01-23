@@ -75,6 +75,10 @@
       <Project>{8dbe577b-1771-4af3-8bd4-07656b89322a}</Project>
       <Name>WowChat.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WowChat.DAL\WowChat.DAL.csproj">
+      <Project>{f723d59e-22ce-465d-83ca-c938c01ed07d}</Project>
+      <Name>WowChat.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WowChat.IBLL\WowChat.IBLL.csproj">
       <Project>{4bd24a1e-fefc-4a17-b835-95d4b54eb390}</Project>
       <Name>WowChat.IBLL</Name>

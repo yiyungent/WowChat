@@ -10,9 +10,9 @@ textarea { resize:none; } /*防止拖动*/
 img {border:0; vertical-align:middle; }  /*  去掉图片低测默认的3像素空白缝隙，或者用display：block也可以*/
 table { border-collapse:collapse; }
 body {
-    font:12px/150% Arial,Verdana,"\5b8b\4f53";
-    color: #000000;
-    background:#fff;
+	font: 12px/150% "Microsoft YaHei",Verdana,"\5b8b\4f53";
+	color: #000000;
+	background: #fff;
 }
 .clearfix:before,.clearfix:after {  /*清除浮动*/
     content:"";

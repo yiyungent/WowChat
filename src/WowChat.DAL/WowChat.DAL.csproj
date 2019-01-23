@@ -45,6 +45,7 @@
     <Compile Include="MSSQLAide.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User_infoDal.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WowChat.IDAL\WowChat.IDAL.csproj">

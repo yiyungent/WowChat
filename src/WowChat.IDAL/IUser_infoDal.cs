@@ -13,5 +13,7 @@ namespace WowChat.IDAL
         List<Model.User_info> GetList();
 
         int Add();
+
+        User_info GetByPhoneOrEmail(string phoneOrEmail);
     }
 }

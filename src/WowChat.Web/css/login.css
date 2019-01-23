@@ -2,10 +2,33 @@
 	width: 980px;
 	margin: 0 auto;
 }
+.top-banner {
+	background: #00a0d8;
+	height: 86px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.title-line {
+	height: 28px;
+	margin: 0 auto;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 28px;
+	text-align: center;
+}
+.title-line .tit {
+	height: 56px;
+	line-height: 56px;
+	margin: 0 auto;
+	padding: 0 20px;
+	font-family: PingFangSC-Medium;
+	font-size: 38px;
+	background: #fff;
+	text-align: center;
+}
 .login-left {
 	float: left;
 	width: 489px;
-	height: 800px; /**/
+	height: 400px; /**/
 }
 .line {
 	float: left;
@@ -23,6 +46,9 @@
 	padding-top: 28px;
 	width: 445px;
 }
+.input-box .status-box {
+	position: relative;
+}
 .input-box .item {
 	height: 66px;
 }
@@ -35,7 +61,23 @@
 	border-radius: 4px;
 	font-size: 14px;
 }
-
+.input-box .item input.error {
+	border-color: #f66495;
+}
+.input-box .item .status {
+	display: none;
+	background-image: url('../images/scripts/login.png');
+	position: absolute;
+	top: 8px;
+	right: -25px;
+	width: 20px;
+	height: 20px;
+}
+.input-box .item .status.error {
+	display: block;
+	background-position: -37px -38px;
+}
+/* start 滑动验证码 */
 .verify-holder {
 	width: 410px;
 	height: 40px;
@@ -65,7 +107,7 @@
 .verify-box {
 	display: block;
 	position: absolute;
-	top: 14px;
+	top: 12px;
 	left: 34px;
 	width: 16px;
 	height: 16px;
@@ -77,11 +119,11 @@
 .verify-box-success {
 	background: url(/images/scripts/truev.png) no-repeat left bottom;
 }
+/* end 滑动验证码 */
 .remember {
 	/*margin: 10px 0;*/
 	color: #717171;
 	width: 410px;
-	font-size: 12px;
 }
 .remember span {
 	color: #bbb;
@@ -93,6 +135,17 @@
 .remember a {
 	color: #00a1d6;
 }
+.input-box .text {
+	margin: 6px 0;
+	font-size: 12px;
+	height: 20px;
+	line-height: 20px;
+}
+.input-box .text .tips {
+	font-family: PingFangSC-Medium;
+	color: #f66495;
+	float: left;
+}
 .btn-box {
 	padding-top: 10px;
 }
@@ -101,15 +154,17 @@
 	width: 184px;
 	height: 36px;
 	border-radius: 2px;
-	border: 1px solid #0381aa;
-	background: #00a7de;
 	cursor: pointer;
 	text-align: center;
-	line-height: 36px;
+	line-height: 38px;
 	font-size: 14px;
+}
+.btn-login {
+	background: #00a7de;
+	border: 1px solid #0381aa;
 	color: #fff;
 }
-.btn:hover {
+.btn-login:hover {
 	color: #fff;
 	background: #00bee7;
 }
