@@ -13,5 +13,7 @@ namespace WowChat.IBLL
         List<User_info> GetList();
 
         User_info GetByPhoneOrEmail(string phoneOrEmail);
+
+        bool EditPwdByEmail(string email, string password);
     }
 }

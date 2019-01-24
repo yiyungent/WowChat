@@ -11,7 +11,9 @@
 				console.log("腾讯第一次验证通过");
 				// 第一次验证通过
 				// 验证第一次通过后，保存票据和账号，跳到下一步
-				$(".data-step .userName").val($(".el-input-inner").val().trim());
+				if ($("#js-userName").length != 0) {
+					$(".data-step .userName").val($("#js-userName").val().trim());
+				}
 				resetPassword();
 				// 准备 服务端 第二次验证
 				$(".data-step .ticket").val(res.ticket);
@@ -26,7 +28,7 @@
 function confirmAccount() {
 	var htmlStr = '<div class="form-group">\
 						<div class="el-input">\
-							<input class="el-input-inner" type="text" placeholder="请输入绑定的手机号/邮箱">\
+							<input id="js-userName" class="el-input-inner" type="text" placeholder="请输入绑定的手机号/邮箱">\
 						</div>\
 						<div class="form-message text-error"></div>\
 				   </div>\
@@ -60,12 +62,159 @@ function confirmAccount() {
 function resetPassword() {
 	$(".step-list a:eq(0)").removeClass("active").addClass("step-pass");
 	$(".step-list a:eq(1)").addClass("active");
-	var htmlStr = '<div class="form-group">\
-						<span class="form-group-title">新密码</span>\
+	var htmlStr = '<div id="js-pwd" class="form-group">\
+						<span class="form-group-title">新密码：</span>\
 	                    <div class="el-input">\
 							<input type="password" class="el-input-inner" placeholder="新密码：6～16位字符，区分大小写">\
 						</div>\
 	                    <div class="form-message text-error"></div>\
+				   </div>\
+				   <div id="js-repwd" class="form-group">\
+						<span class="form-group-title">确认密码：</span>\
+						<div class="el-input">\
+							<input type="password" class="el-input-inner" placeholder="请输入确认密码">\
+						</div>\
+						<div class="form-message text-error"></div>\
+				   </div>\
+				   <div class="form-group">\
+						<span class="form-group-title" style="top: 0;">邮箱：</span>\
+						<div class="clearfix">\
+							<p class="mail-text fl">{0}</p>\
+							<a href="#/verify" class="fl">修改</a>\
+						</div>\
+						<div class="form-message text-error"></div>\
+				   </div>\
+				   <div id="js-verify" class="form-group">\
+						<span class="form-group-title">验证：</span>\
+						<div class="clearfix">\
+							<div class="el-input verify-code fl">\
+								<input type="text" class="el-input-inner" placeholder="请输入短信/邮件验证码">\
+							</div>\
+							<button type="button" class="verify-btn fl"><span>获取验证码</span></button>\
+						</div>\
+						<div class="form-message text-error"></div>\
+				   </div>\
+				   <div class="form-group">\
+						<button id="js-btn-confirm" type="button" class="btn-confirm"><span>确认修改</span></button>\
 				   </div>';
+	htmlStr = htmlStr.format($(".data-step .userName").val());
 	$(".step-container").html(htmlStr);
+
+	// 点击获取验证码
+	$(".verify-btn").on("click", function () {
+		var ticket = $(".data-step .ticket").val();
+		var randStr = $(".data-step .randStr").val();
+		var userName = $(".data-step .userName").val();
+		var verifyDiv = $("#js-verify");
+		// 发送滑动验证票据到服务器
+		$.ajax({
+			url: "/login/verifycode",
+			type: "POST",
+			data: { "ticket": ticket, "randStr": randStr, "action": "rpwd|" + userName },
+			dataType: "json",
+			success: function (data) {
+				if (data.code == -1) {
+					// 验证不通过--返回提示重新滑动验证
+					//verifyDiv.children(".text-error").html("验证不通过或已过期，请重新验证");
+					tCaptcha.show();
+				} else if (data.code == 1) {
+					// 验证通过--发送验证码到邮箱，返回发送提示
+					//verifyDiv.children(".text-error").html('验证码短信/邮件已发出，5分钟内有效，请注意<a target="_blank" href="//mail.126.com" style="font-size: 14px;">查收</a>');
+					verifyDiv.children(".text-error").html(data.message);
+				}
+			}
+		});
+
+		// 发送验证码按钮
+		settime($(this));
+	});
+
+	var isFirst = true;
+	// 点击确认修改
+	$("#js-btn-confirm").on("click", function () {
+		if (!checkResetPwdInput()) {
+			isFirst = false;
+			return;
+		}
+		var userName = $(".data-step .userName").val();
+		var password = $("#js-pwd").children("input").val();
+		var vCode = $("#js-verify").children("input").val();
+		// 发送用户名(邮箱)，新密码，验证码到服务器
+		$.ajax({
+			url: "/login/resetpwd",
+			type: "POST",
+			data: { "userName": userName, "password": password, "vCode": vCode },
+			dataType: "json",
+			success: function (data) {
+				if (data.code == -1) {
+					// 失败
+					$("#js-verify").children(".text-error").text(data.message);
+				} else if (data.code == 1) {
+					// 成功
+				}
+			}
+		});
+		// 验证码正确--提示修改成功
+		// 验证码错误--返回提示
+	});
+
+	$(".el-input-inner").on("change", function () {
+		if (!isFirst) {
+			checkResetPwdInput();
+		}
+	});
 }
+
+
+var count = 30;
+/**
+ * 30s后获取验证码
+ */
+function settime(obj) {
+	if (count == 0) {
+		obj.removeAttr("disabled");
+		obj.text("发送验证码");
+		obj.removeClass("is-disabled");
+		count = 30;
+		return;
+	} else {
+		obj.attr("disabled", "disabled");
+		obj.text(count + "s后重发");
+		obj.addClass("is-disabled");
+		count--;
+	}
+	setTimeout(function () {
+		settime(obj)
+	}, 1000)
+}
+
+function checkResetPwdInput() {
+	var isPass = true;
+	var pwdDiv = $("#js-pwd");
+	var repwdDiv = $("#js-repwd");
+	var userName = $(".data-step .userName").val();
+	if (pwdDiv.children("input").val() == "") {
+		pwdDiv.children("input").addClass("input-error");
+		pwdDiv.children(".text-error").text("请输入密码");
+		isPass = false;
+	}
+	if (repwdDiv.children("input").val() == "") {
+		repwdDiv.children("input").addClass("input-error");
+		repwdDiv.children(".text-error").text("请输入确认密码");
+		isPass = false;
+	}
+	if (repwdDiv.children("input").val() != pwdDiv.children("input").val()) {
+		repwdDiv.children("input").addClass("input-error");
+		repwdDiv.children(".text-error").text("两次输入的密码不一致");
+		isPass = false;
+	}
+	return isPass;
+}
+
+
+String.prototype.format = function () {
+	var args = arguments;
+	return this.replace(/\{(\d+)\}/g, function (s, i) {
+		return args[i];
+	});
+};

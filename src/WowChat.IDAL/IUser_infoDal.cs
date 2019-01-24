@@ -15,5 +15,7 @@ namespace WowChat.IDAL
         int Add();
 
         User_info GetByPhoneOrEmail(string phoneOrEmail);
+
+        int EditPwdByEmail(string email, string password);
     }
 }

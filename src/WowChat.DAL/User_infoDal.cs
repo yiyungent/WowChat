@@ -51,5 +51,18 @@ namespace WowChat.DAL
             }
             return user_Info;
         }
+
+        public int EditPwdByEmail(string email, string password)
+        {
+            string sql = @"UPDATE [dbo].[user_info] SET [password]=@password
+                           WHERE [email]=@email";
+            SqlParameter[] pars = new SqlParameter[] {
+                new SqlParameter("@password", SqlDbType.VarChar),
+                new SqlParameter("@email", SqlDbType.NVarChar)
+            };
+            pars[0].Value = password;
+            pars[1].Value = email;
+            return MSSQLAide.ExecuteNonQuery(sql, pars);
+        }
     }
 }

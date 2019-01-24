@@ -13,6 +13,21 @@ namespace WowChat.Web.Controllers
     {
         private IUser_infoService User_InfoService = new BLL.User_infoService();
 
+        Dictionary<string, string> EmailDic { get; set; }
+
+        public LoginController()
+        {
+            InitEmailDic();
+        }
+
+        private void InitEmailDic()
+        {
+            this.EmailDic = new Dictionary<string, string>();
+            this.EmailDic.Add("126.com", "mail.126.com");
+            this.EmailDic.Add("qq.com", "mail.qq.com");
+            this.EmailDic.Add("163.com", "www.163.com");
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -60,6 +75,58 @@ namespace WowChat.Web.Controllers
         public ActionResult FindPassword()
         {
             return View();
+        }
+
+        /// <summary>
+        /// 滑动二次验证(目前此方法仅用于找回密码时验证)
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="randStr"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult VerifyCode(string ticket, string randStr, string action)
+        {
+            string[] actions = action.Split('|');
+            string ip = Request.UserHostAddress;
+            string message = string.Empty;
+            if (Common.VerifyCode.SecondVerifyCode(ticket, randStr, ip, out message))
+            {
+                // 验证通过
+                // 根据用户的邮箱类型返回不同的邮箱查看地址
+                // ewffnrwf@126.com --->  126.com
+                string emailType = actions[1].Split(new string[] { "@" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                string emailLoginAddress = EmailDic[emailType];
+                // 邮件验证码
+                Common.EmailVerifyCode.SendEmailVerifyCode(actions[1], "rpwd");
+                return Json(new { code = 1, message = $"验证码短信/邮件已发出，5分钟内有效，请注意<a target=\"_blank\" href=\"//{emailLoginAddress}\" style=\"font-size: 14px;\">查收</a>" });
+            }
+            else
+            {
+                // 验证不通过
+                return Json(new { code = -1, message = "滑动验证不通过或失效，请重新验证" });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ResetPwd(string userName, string password, string vCode)
+        {
+            // 效验验证码
+            string inputVCode = vCode;
+            string rightVCode = Session["vCode"].ToString();
+            // 使用一次后使其立即失效
+            Session["vCode"] = null;
+            if (inputVCode == rightVCode)
+            {
+                // 验证通过
+                // 更改密码
+                this.User_InfoService.EditPwdByEmail(userName, Common.MD5Helper.MD5Encrypt32(password));
+                return Json(new { code = 1, message = "密码重置成功，请前往登录" });
+            }
+            else
+            {
+                return Json(new { code = -1, message = "验证码错误，请重新获取并填写" });
+            }
         }
     }
 }

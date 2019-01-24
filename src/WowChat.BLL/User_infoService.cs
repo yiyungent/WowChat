@@ -27,5 +27,10 @@ namespace WowChat.BLL
         {
             return this._dal.GetByPhoneOrEmail(phoneOrEmail);
         }
+
+        public bool EditPwdByEmail(string email, string password)
+        {
+            return _dal.EditPwdByEmail(email, password) > 0;
+        }
     }
 }
