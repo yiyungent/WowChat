@@ -123,6 +123,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Scripts\jquery-1.11.3.min.map" />
     <Content Include="Views\Login\FindPassword.cshtml" />
+    <Content Include="Views\Shared\_LayoutMain.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
