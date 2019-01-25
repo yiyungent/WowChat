@@ -3,7 +3,6 @@
 	// start 腾讯验证
 	// 点击验证
 	window.tCaptcha = new TencentCaptcha(
-		$(".el-button")[0],
 		'2041300407',
 		function (res) {
 			if (res.ret === 0) {
@@ -23,6 +22,16 @@
 		}
 	);
 	// end 腾讯验证
+	$(".step-list a:eq(0)").on("click", function (e) {
+		confirmAccount();
+		e.preventDefault();
+	});
+	$(".step-list a:eq(1)").on("click", function (e) {
+		console.log($(this));
+		if (!$(this).hasClass("step-pass") && !$(this).hasClass("active")) return;
+		resetPassword();
+		e.preventDefault();
+	});
 });
 
 function confirmAccount() {
@@ -36,7 +45,10 @@ function confirmAccount() {
 						<button class="el-button" type="button"><span>确认</span></button>\
 				   </div>';
 	$(".step-container").html(htmlStr);
+
+	var isFirst = true;
 	$(".el-button").on("click", function () {
+		isFirst = false;
 		// 是否输入为空
 		if ($(".el-input-inner").val().trim() == "") {
 			$(".el-input").addClass("input-error");
@@ -44,10 +56,12 @@ function confirmAccount() {
 			return;
 		}
 		// 弹出滑动验证框
-		//tCaptcha.show();
+		tCaptcha.show();
 	});
+
 	// 效验是否输入
 	$(".el-input-inner").on("change", function () {
+		if (isFirst) return;
 		// 是否输入为空
 		if ($(".el-input-inner").val().trim() == "") {
 			$(".el-input").addClass("input-error");
@@ -80,7 +94,7 @@ function resetPassword() {
 						<span class="form-group-title" style="top: 0;">邮箱：</span>\
 						<div class="clearfix">\
 							<p class="mail-text fl">{0}</p>\
-							<a href="#/verify" class="fl">修改</a>\
+							<a href="#" class="fl">修改</a>\
 						</div>\
 						<div class="form-message text-error"></div>\
 				   </div>\
@@ -115,12 +129,12 @@ function resetPassword() {
 			success: function (data) {
 				if (data.code == -1) {
 					// 验证不通过--返回提示重新滑动验证
-					//verifyDiv.children(".text-error").html("验证不通过或已过期，请重新验证");
+					//verifyDiv.find(".text-error").html("验证不通过或已过期，请重新验证");
 					tCaptcha.show();
 				} else if (data.code == 1) {
 					// 验证通过--发送验证码到邮箱，返回发送提示
-					//verifyDiv.children(".text-error").html('验证码短信/邮件已发出，5分钟内有效，请注意<a target="_blank" href="//mail.126.com" style="font-size: 14px;">查收</a>');
-					verifyDiv.children(".text-error").html(data.message);
+					//verifyDiv.find(".text-error").html('验证码短信/邮件已发出，5分钟内有效，请注意<a target="_blank" href="//mail.126.com" style="font-size: 14px;">查收</a>');
+					verifyDiv.find(".text-error").html(data.message);
 				}
 			}
 		});
@@ -137,8 +151,8 @@ function resetPassword() {
 			return;
 		}
 		var userName = $(".data-step .userName").val();
-		var password = $("#js-pwd").children("input").val();
-		var vCode = $("#js-verify").children("input").val();
+		var password = $("#js-pwd input").val();
+		var vCode = $("#js-verify input").val();
 		// 发送用户名(邮箱)，新密码，验证码到服务器
 		$.ajax({
 			url: "/login/resetpwd",
@@ -148,23 +162,38 @@ function resetPassword() {
 			success: function (data) {
 				if (data.code == -1) {
 					// 失败
-					$("#js-verify").children(".text-error").text(data.message);
+					$("#js-verify").find(".text-error").text(data.message);
 				} else if (data.code == 1) {
 					// 成功
+					resetSuccess();
 				}
 			}
 		});
-		// 验证码正确--提示修改成功
-		// 验证码错误--返回提示
 	});
 
 	$(".el-input-inner").on("change", function () {
-		if (!isFirst) {
-			checkResetPwdInput();
-		}
+		if (isFirst) return;
+		checkResetPwdInput();
+	});
+
+	$(".form-group .mail-text").next("a").on("click", function (e) {
+		confirmAccount();
+		e.preventDefault();
 	});
 }
 
+function resetSuccess() {
+	$(".step-list").find("a:eq(1)").removeClass("active").addClass("step-pass").end().find("a:eq(2)").addClass("active");
+	setTimeout(function () {
+		window.location.href = "/login";
+	}, 5000);
+	var sec = 5;
+	var htmlStr = '<div>密码已经重置成功，还剩{0}s跳转至登录</div>';
+	setInterval(function () {
+		$(".step-container").html(htmlStr.format(sec));
+		sec--;
+	}, 1000);
+}
 
 var count = 30;
 /**
@@ -193,20 +222,29 @@ function checkResetPwdInput() {
 	var pwdDiv = $("#js-pwd");
 	var repwdDiv = $("#js-repwd");
 	var userName = $(".data-step .userName").val();
-	if (pwdDiv.children("input").val() == "") {
-		pwdDiv.children("input").addClass("input-error");
-		pwdDiv.children(".text-error").text("请输入密码");
+	if (pwdDiv.find("input").val() == "") {
+		pwdDiv.find(".el-input").addClass("input-error");
+		pwdDiv.find(".text-error").text("请输入密码");
 		isPass = false;
+	} else {
+		pwdDiv.find(".el-input").removeClass("input-error");
+		pwdDiv.find(".text-error").text("");
 	}
-	if (repwdDiv.children("input").val() == "") {
-		repwdDiv.children("input").addClass("input-error");
-		repwdDiv.children(".text-error").text("请输入确认密码");
+	if (repwdDiv.find("input").val() == "") {
+		repwdDiv.find(".el-input").addClass("input-error");
+		repwdDiv.find(".text-error").text("请输入确认密码");
 		isPass = false;
+	} else {
+		repwdDiv.find(".el-input").removeClass("input-error");
+		repwdDiv.find(".text-error").text("");
 	}
-	if (repwdDiv.children("input").val() != pwdDiv.children("input").val()) {
-		repwdDiv.children("input").addClass("input-error");
-		repwdDiv.children(".text-error").text("两次输入的密码不一致");
+	if (repwdDiv.find("input").val() != pwdDiv.find("input").val()) {
+		repwdDiv.find(".el-input").addClass("input-error");
+		repwdDiv.find(".text-error").text("两次输入的密码不一致");
 		isPass = false;
+	} else {
+		repwdDiv.find(".el-input").removeClass("input-error");
+		repwdDiv.find(".text-error").text("");
 	}
 	return isPass;
 }

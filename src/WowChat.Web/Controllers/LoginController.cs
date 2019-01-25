@@ -20,6 +20,7 @@ namespace WowChat.Web.Controllers
             InitEmailDic();
         }
 
+        #region 初始化邮件地址数据
         private void InitEmailDic()
         {
             this.EmailDic = new Dictionary<string, string>();
@@ -27,13 +28,21 @@ namespace WowChat.Web.Controllers
             this.EmailDic.Add("qq.com", "mail.qq.com");
             this.EmailDic.Add("163.com", "www.163.com");
         }
+        #endregion
 
+        #region 登录视图
         [HttpGet]
         public ActionResult Index()
         {
+            if (Session["User"] != null)
+            {
+                return Redirect("/");
+            }
             return View();
-        }
+        } 
+        #endregion
 
+        #region 登录验证
         [HttpPost]
         public ActionResult Index(string userName, string password)
         {
@@ -70,13 +79,16 @@ namespace WowChat.Web.Controllers
                 }
             }
         }
+        #endregion
 
-
+        #region 找回密码视图
         public ActionResult FindPassword()
         {
             return View();
-        }
+        } 
+        #endregion
 
+        #region 滑动二次验证
         /// <summary>
         /// 滑动二次验证(目前此方法仅用于找回密码时验证)
         /// </summary>
@@ -107,13 +119,15 @@ namespace WowChat.Web.Controllers
                 return Json(new { code = -1, message = "滑动验证不通过或失效，请重新验证" });
             }
         }
+        #endregion
 
+        #region 重置密码
         [HttpPost]
         public ActionResult ResetPwd(string userName, string password, string vCode)
         {
             // 效验验证码
             string inputVCode = vCode;
-            string rightVCode = Session["vCode"].ToString();
+            string rightVCode = Session["vCode"] != null ? Session["vCode"].ToString() : "";
             // 使用一次后使其立即失效
             Session["vCode"] = null;
             if (inputVCode == rightVCode)
@@ -128,5 +142,6 @@ namespace WowChat.Web.Controllers
                 return Json(new { code = -1, message = "验证码错误，请重新获取并填写" });
             }
         }
+        #endregion
     }
 }

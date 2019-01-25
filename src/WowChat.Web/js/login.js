@@ -23,8 +23,10 @@ window.onload = function () {
 // end 腾讯验证
 
 $(function () {
+	var isFirst = true;
 	// 点击登录
 	$(".btn-login").on("click", function () {
+		isFirst = false;
 		// 获取用户名(手机号/邮箱), 密码, 票据
 		var userName = $(".userName input").val().trim();
 		var password = $(".password input").val();
@@ -72,6 +74,7 @@ $(function () {
 		$("#verify-box")[0].className = "verify-box verify-box-detect";
 	});
 	$(".form-login input").on("change", function () {
+		if (isFirst) return; // 首次不采用失焦提示
 		checkLoginInfo();
 	});
 });
@@ -110,17 +113,3 @@ function checkLoginInfo() {
 	$(".remember .tips").text("");
 	return isPass;
 }
-
-
-// 问吧。。。。。。。。。。。。。虽然我萌新
-//// 算法？我很慌！！！！都说是萌新啦QAQ
-//14: 41: 13 : 收到彈幕: 冰魄冫玄影 說: 一堆数组   随机放进一个数组里面
-//14: 41: 56 : 收到彈幕: 冰魄冫玄影 說: 比如  5个3  6个7  8个8
-//// QAQ，我都没看出规律，什么鬼？我放弃，求dalao解
-//// 尴尬，不会，不好随机放，额鹅鹅鹅，
-//// 那不是不符合题意，我还以为放进去时就要随机，其实也随意了
-//14: 42: 14 : 收到彈幕: 冰魄冫玄影 說: 最好用递归实现
-
-
-// _(￣0￣)_[哦~] 
-// (・∀・(・∀・(・∀・*)))可以这么说吧
