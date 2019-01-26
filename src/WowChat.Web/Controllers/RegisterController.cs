@@ -8,10 +8,12 @@ namespace WowChat.Web.Controllers
 {
     public class RegisterController : Controller
     {
-        // GET: Register
+        #region 注册视图
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
-        }
+        } 
+        #endregion
     }
 }

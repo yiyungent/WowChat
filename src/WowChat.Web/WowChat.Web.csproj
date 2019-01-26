@@ -92,6 +92,7 @@
     <Content Include="css\base.css" />
     <Content Include="css\fpwd.css" />
     <Content Include="css\login.css" />
+    <Content Include="css\register.css" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="images\scripts\detect-c.png" />
@@ -124,6 +125,7 @@
     <Content Include="Scripts\jquery-1.11.3.min.map" />
     <Content Include="Views\Login\FindPassword.cshtml" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -134,7 +136,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WowChat.BLL\WowChat.BLL.csproj">
