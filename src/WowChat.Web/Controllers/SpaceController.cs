@@ -14,8 +14,15 @@ namespace WowChat.Web.Controllers
         [AuthenLogin]
         public ActionResult Index()
         {
+            if (!string.IsNullOrEmpty(Request.Headers["X-PJAX"]) && Convert.ToBoolean(Request.Headers["X-PJAX"]))
+            {
+                // pjax
+                string htmlStr = $"<h3>Headers[\"X-PJAX\"]：{Request.Headers["X-PJAX"]}</h3>";
+                htmlStr += $"<h5>测试pjax---{DateTime.Now.ToString("yyyy-MM-dd HH:mm")}</h5>";
+                return Content(htmlStr);
+            }
             return View();
-        } 
+        }
         #endregion
     }
 }

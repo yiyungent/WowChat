@@ -102,11 +102,14 @@
     <Content Include="images\scripts\truev.png" />
     <Content Include="images\top_banner.png" />
     <Content Include="js\dist\jquery-1.11.3.min.js" />
+    <Content Include="js\dist\jquery.pjax.js" />
     <Content Include="js\fpwd.js" />
     <Content Include="js\login.js" />
     <Content Include="js\register.js" />
+    <Content Include="js\space.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\jquery.pjax.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

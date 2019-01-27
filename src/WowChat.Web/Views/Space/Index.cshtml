@@ -1,8 +1,21 @@
 ﻿
 @{
-    ViewBag.Title = "个人空间";
-    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+	ViewBag.Title = "个人空间";
+	Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
+@section head{
 
+}
 <h2>个人空间</h2>
-
+<div>
+	<div id="loading" style="display: none;">加载...</div>
+	<hr />
+	<a href="test" data-pjax>测试pjax</a>
+	<hr />
+	<button type="button" onclick="test()">测试pjax button</button>
+</div>
+<div id="pjax-container"></div>
+@section foot{
+	<script src="~/js/dist/jquery.pjax.js"></script>
+	<script src="~/js/space.js"></script>
+}
