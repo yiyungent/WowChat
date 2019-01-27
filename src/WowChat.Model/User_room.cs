@@ -24,7 +24,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int user_id
+		public int User_id
 		{
 			set{ _user_id=value;}
 			get{return _user_id;}
@@ -32,7 +32,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int room_id
+		public int Room_id
 		{
 			set{ _room_id=value;}
 			get{return _room_id;}
@@ -40,7 +40,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public DateTime join_time
+		public DateTime Join_time
 		{
 			set{ _join_time=value;}
 			get{return _join_time;}
@@ -48,7 +48,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int room_role
+		public int Room_role
 		{
 			set{ _room_role=value;}
 			get{return _room_role;}
@@ -56,7 +56,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool allow_send
+		public bool Allow_send
 		{
 			set{ _allow_send=value;}
 			get{return _allow_send;}
@@ -64,7 +64,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public DateTime? ban_send_expiry
+		public DateTime? Ban_send_expiry
 		{
 			set{ _ban_send_expiry=value;}
 			get{return _ban_send_expiry;}
@@ -72,7 +72,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string remark
+		public string Remark
 		{
 			set{ _remark=value;}
 			get{return _remark;}

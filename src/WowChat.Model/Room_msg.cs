@@ -26,7 +26,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int id
+		public int Id
 		{
 			set{ _id=value;}
 			get{return _id;}
@@ -34,7 +34,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int sender_id
+		public int Sender_id
 		{
 			set{ _sender_id=value;}
 			get{return _sender_id;}
@@ -42,7 +42,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int room_id
+		public int Room_id
 		{
 			set{ _room_id=value;}
 			get{return _room_id;}
@@ -50,7 +50,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public DateTime send_time
+		public DateTime Send_time
 		{
 			set{ _send_time=value;}
 			get{return _send_time;}
@@ -58,7 +58,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string sender_ip
+		public string Sender_ip
 		{
 			set{ _sender_ip=value;}
 			get{return _sender_ip;}
@@ -66,7 +66,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int? reply_id
+		public int? Reply_id
 		{
 			set{ _reply_id=value;}
 			get{return _reply_id;}
@@ -74,7 +74,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string message
+		public string Message
 		{
 			set{ _message=value;}
 			get{return _message;}
@@ -82,7 +82,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int status
+		public int Status
 		{
 			set{ _status=value;}
 			get{return _status;}
@@ -90,7 +90,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string remark
+		public string Remark
 		{
 			set{ _remark=value;}
 			get{return _remark;}

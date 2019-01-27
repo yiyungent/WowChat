@@ -22,7 +22,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public int id
+        public int Id
         {
             set { _id = value; }
             get { return _id; }
@@ -30,7 +30,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public string name
+        public string Name
         {
             set { _name = value; }
             get { return _name; }
@@ -38,7 +38,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public int status
+        public int Status
         {
             set { _status = value; }
             get { return _status; }
@@ -46,7 +46,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public string remark
+        public string Remark
         {
             set { _remark = value; }
             get { return _remark; }

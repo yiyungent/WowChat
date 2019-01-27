@@ -68,7 +68,7 @@ namespace WowChat.Web.Controllers
             else
             {
                 // 存在此用户 - 效验密码 - 返回结果
-                if (user_Info.password != password)
+                if (user_Info.Password != password)
                 {
                     return Json(new { code = -1, message = "用户名或密码错误" });
                 }

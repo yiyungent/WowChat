@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Group_infoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User_infoService.cs" />
   </ItemGroup>

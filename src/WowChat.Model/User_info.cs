@@ -32,7 +32,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public int id
+        public int Id
         {
             set { _id = value; }
             get { return _id; }
@@ -40,7 +40,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public int group_id
+        public int Group_id
         {
             set { _group_id = value; }
             get { return _group_id; }
@@ -48,7 +48,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public string name
+        public string Name
         {
             set { _name = value; }
             get { return _name; }
@@ -56,7 +56,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public string password
+        public string Password
         {
             set { _password = value; }
             get { return _password; }
@@ -64,7 +64,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public string email
+        public string Email
         {
             set { _email = value; }
             get { return _email; }
@@ -72,7 +72,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public string phone
+        public string Phone
         {
             set { _phone = value; }
             get { return _phone; }
@@ -80,7 +80,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public string avatar
+        public string Avatar
         {
             set { _avatar = value; }
             get { return _avatar; }
@@ -88,7 +88,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public DateTime create_time
+        public DateTime Create_time
         {
             set { _create_time = value; }
             get { return _create_time; }
@@ -96,7 +96,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public DateTime login_time
+        public DateTime Login_time
         {
             set { _login_time = value; }
             get { return _login_time; }
@@ -104,7 +104,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public string login_ip
+        public string Login_ip
         {
             set { _login_ip = value; }
             get { return _login_ip; }
@@ -112,7 +112,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public int logins
+        public int Logins
         {
             set { _logins = value; }
             get { return _logins; }
@@ -120,7 +120,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public int score
+        public int Score
         {
             set { _score = value; }
             get { return _score; }
@@ -128,7 +128,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public int status
+        public int Status
         {
             set { _status = value; }
             get { return _status; }
@@ -136,7 +136,7 @@ namespace WowChat.Model
         /// <summary>
         /// 
         /// </summary>
-        public string remark
+        public string Remark
         {
             set { _remark = value; }
             get { return _remark; }

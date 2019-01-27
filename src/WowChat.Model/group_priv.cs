@@ -19,7 +19,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int group_id
+		public int Group_id
 		{
 			set{ _group_id=value;}
 			get{return _group_id;}
@@ -27,7 +27,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int priv_id
+		public int Priv_id
 		{
 			set{ _priv_id=value;}
 			get{return _priv_id;}

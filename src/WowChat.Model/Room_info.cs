@@ -28,7 +28,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int id
+		public int Id
 		{
 			set{ _id=value;}
 			get{return _id;}
@@ -36,7 +36,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string name
+		public string Name
 		{
 			set{ _name=value;}
 			get{return _name;}
@@ -44,7 +44,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int rank
+		public int Rank
 		{
 			set{ _rank=value;}
 			get{return _rank;}
@@ -52,7 +52,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string brief
+		public string Brief
 		{
 			set{ _brief=value;}
 			get{return _brief;}
@@ -60,7 +60,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string announcement
+		public string Announcement
 		{
 			set{ _announcement=value;}
 			get{return _announcement;}
@@ -68,7 +68,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int creator_id
+		public int Creator_id
 		{
 			set{ _creator_id=value;}
 			get{return _creator_id;}
@@ -76,7 +76,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public DateTime create_time
+		public DateTime Create_time
 		{
 			set{ _create_time=value;}
 			get{return _create_time;}
@@ -84,7 +84,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string icon
+		public string Icon
 		{
 			set{ _icon=value;}
 			get{return _icon;}
@@ -92,7 +92,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int read_status
+		public int Read_status
 		{
 			set{ _read_status=value;}
 			get{return _read_status;}
@@ -100,7 +100,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int status
+		public int Status
 		{
 			set{ _status=value;}
 			get{return _status;}
@@ -108,7 +108,7 @@ namespace WowChat.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string remark
+		public string Remark
 		{
 			set{ _remark=value;}
 			get{return _remark;}
