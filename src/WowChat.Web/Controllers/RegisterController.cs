@@ -21,11 +21,19 @@ namespace WowChat.Web.Controllers
 
         #region 注册API
         [HttpPost]
-        public ActionResult Index(string userName, string password, string vCode)
+        public ActionResult Index(string nickName, string password, string email, string vCode)
         {
             User_info user_Info = new User_info();
             return Json(new { code = 1, message = "" });
-        } 
+        }
+        #endregion
+
+        #region 存在邮箱吗
+        [HttpPost]
+        public ActionResult ExistEmail(string email)
+        {
+            return Json(new { code = 1, message = "此邮箱已被注册" });
+        }
         #endregion
     }
 }
