@@ -1,16 +1,56 @@
 ﻿$(function () {
+
+	// start 腾讯验证
+	// 点击验证
+	window.tCaptcha = new TencentCaptcha(
+		'2020780900',
+		function (res) {
+			if (res.ret === 0) {
+				// 腾讯云第一次验证通过
+				console.log("第一次验证 通过");
+				// 发送票据到服务器 -- 获取邮箱验证码
+				getEmailVCode(res.ticket, res.randstr);
+			}
+		}
+	);
+	// end 腾讯验证
+
 	$('#js-btn-reg').on('click', function () {
 		// 检查输入框
 		if (!checkInput) {
 			return;
 		}
 		// 检查通过--ajax到服务端--邮件验证码正确--展示注册成功
+		regInfoSend();
 	});
 
 	$('input.el-input-inner').on('change', function () {
 		checkInput();
 	});
+
+	$('.yzm-button').on('click', function () {
+		if (checkInput()) {
+			tCaptcha.show();
+		}
+	});
 });
+
+function getEmailVCode(ticket, randStr) {
+	var email = $('.form-group:eq(2)').find('input').val().trim();
+	$.ajax({
+		url: "/register/getEmailVCode",
+		type: "POST",
+		data: { "email": email, "ticket": ticket, "randStr": randStr },
+		dataType: "json",
+		success: function (data) {
+			if (data.code == -1) {
+
+			} else if (data.code == 1) {
+				console.log(data.message);
+			}
+		}
+	});
+}
 
 function regInfoSend() {
 	var nickName = $('.form-group:eq(0) input').val().trim();
@@ -42,22 +82,30 @@ function checkInput() {
 	if ($nickName.find('input').val().trim() == '') {
 		$nickName.find('.error-message').text('请告诉我你的昵称吧');
 		return false;
+	} else {
+		$nickName.find('.error-message').text('')
 	}
 	if ($pwd.find('input').val().length < 6) {
 		$pwd.find('.error-message').text('密码不能小于6个字符');
 		return false;
+	} else {
+		$pwd.find('.error-message').text('')
 	}
 	if ($email.find('input').val() == '') {
 		$email.find('.error-message').text('亲，请填写邮箱号');
 		return false;
-	} else if (existEmail($email.find('input').val().trim())) {
-		$email.find('.error-message').text('邮箱已经被注册');
+	} else if (!checkEmail($email.find('input').val().trim())) {
 		return false;
+	} else {
+		$email.find('.error-message').text('');
 	}
 	if ($yzm.find('input').val() == '') {
 		$yzm.find('.error-message').text('验证码不能为空');
 		return false;
+	} else {
+		$yzm.find('.error-message').text('');
 	}
+	return true;
 }
 
 function showRegSuccess() {
@@ -68,19 +116,22 @@ function showRegSuccess() {
 	$(".register-box").empty().append(register_box_inner);
 }
 
-function existEmail(email) {
-	var isExist = true;
+function checkEmail(email) {
+	var isPass = true;
 	$.ajax({
-		url: "/register/existEmail",
+		url: "/register/checkEmail",
 		type: "POST",
 		data: { "email": email },
 		dataType: "json",
 		success: function (data) {
 			if (data.code == -1) {
-				// 邮箱不存在
-				isExist = false;
+				// 邮箱不可用
+				$('.form-group:eq(2)').find('.error-message').text(data.message);
+				isPass = false;
+			} else if (data.code == 1) {
+				// 邮箱可用
 			}
 		}
 	});
-	return isExist;
+	return isPass;
 }
