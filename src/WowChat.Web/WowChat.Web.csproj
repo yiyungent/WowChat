@@ -114,7 +114,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Attribute\AuthenAttribute\AuthenLoginAttribute.cs" />
+    <Compile Include="Attribute\AuthenAttr\AuthenLoginAttribute.cs" />
+    <Compile Include="Attribute\ValidationAttr\AllowEmailAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -123,7 +124,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelExt\User_infoExt.cs" />
-    <Compile Include="Models\EmailVCode.cs" />
+    <Compile Include="Models\Enum\User_group_id.cs" />
+    <Compile Include="Models\Request\EmailVCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Response\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WowChat.BLL\WowChat.BLL.csproj">

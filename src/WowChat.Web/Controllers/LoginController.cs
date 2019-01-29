@@ -39,7 +39,7 @@ namespace WowChat.Web.Controllers
                 return Redirect("/");
             }
             return View();
-        } 
+        }
         #endregion
 
         #region 登录验证
@@ -85,7 +85,7 @@ namespace WowChat.Web.Controllers
         public ActionResult FindPassword()
         {
             return View();
-        } 
+        }
         #endregion
 
         #region 滑动二次验证
@@ -110,7 +110,7 @@ namespace WowChat.Web.Controllers
                 string emailType = actions[1].Split(new string[] { "@" }, StringSplitOptions.RemoveEmptyEntries)[1];
                 string emailLoginAddress = EmailDic[emailType];
                 // 邮件验证码
-                Common.EmailVerifyCode.SendEmailVerifyCode(actions[1], "rpwd");
+                Common.EmailVerifyCode.SendEmailVerifyCode(actions[1], Common.SendReason.RPwd);
                 return Json(new { code = 1, message = $"验证码短信/邮件已发出，5分钟内有效，请注意<a target=\"_blank\" href=\"//{emailLoginAddress}\" style=\"font-size: 14px;\">查收</a>" });
             }
             else

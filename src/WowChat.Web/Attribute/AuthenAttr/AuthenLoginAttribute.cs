@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Filters;
 using WowChat.Model;
 
-namespace WowChat.Web.Attribute.AuthenAttribute
+namespace WowChat.Web.Attribute.AuthenAttr
 {
     public class AuthenLoginAttribute : FilterAttribute, IAuthenticationFilter
     {

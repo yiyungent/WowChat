@@ -15,5 +15,9 @@ namespace WowChat.IBLL
         User_info GetByPhoneOrEmail(string phoneOrEmail);
 
         bool EditPwdByEmail(string email, string password);
+
+        void SendEmailVCode4Reg(string email);
+
+        bool RegUser(User_info user_Info);
     }
 }

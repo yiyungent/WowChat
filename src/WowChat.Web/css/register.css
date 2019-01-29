@@ -79,6 +79,11 @@
 	height: 40px;
 	margin: 0 auto;
 }
+.register-hidden-group.text-error {
+	line-height: 40px;
+	font-size: 16px;
+	color: #f45d90;
+}
 .register-hidden-group.text-right {
 	line-height: 40px;
 	text-align: right;

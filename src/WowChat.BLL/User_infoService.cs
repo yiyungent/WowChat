@@ -32,5 +32,15 @@ namespace WowChat.BLL
         {
             return _dal.EditPwdByEmail(email, password) > 0;
         }
+
+        public void SendEmailVCode4Reg(string email)
+        {
+            Common.EmailVerifyCode.SendEmailVerifyCode(email, Common.SendReason.Reg);
+        }
+
+        public bool RegUser(User_info user_Info)
+        {
+            return _dal.Insert(user_Info) > 0;
+        }
     }
 }

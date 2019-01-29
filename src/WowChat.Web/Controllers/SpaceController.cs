@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using WowChat.Web.Attribute.AuthenAttribute;
+using WowChat.Web.Attribute.AuthenAttr;
 
 namespace WowChat.Web.Controllers
 {

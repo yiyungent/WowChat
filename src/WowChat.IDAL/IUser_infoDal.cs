@@ -12,10 +12,10 @@ namespace WowChat.IDAL
     {
         List<Model.User_info> GetList();
 
-        int Add();
-
         User_info GetByPhoneOrEmail(string phoneOrEmail);
 
         int EditPwdByEmail(string email, string password);
+
+        int Insert(User_info user_Info);
     }
 }

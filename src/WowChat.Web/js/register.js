@@ -3,7 +3,7 @@
 	// start 腾讯验证
 	// 点击验证
 	window.tCaptcha = new TencentCaptcha(
-		'2020780900',
+		'2041300407',
 		function (res) {
 			if (res.ret === 0) {
 				// 腾讯云第一次验证通过
@@ -20,6 +20,13 @@
 		if (!checkInput) {
 			return;
 		}
+		var $yzm = $('.form-group:eq(3)');
+		if ($yzm.find('input').val() == '') {
+			$yzm.find('.error-message').text('验证码不能为空');
+			return false;
+		} else {
+			$yzm.find('.error-message').text('');
+		}
 		// 检查通过--ajax到服务端--邮件验证码正确--展示注册成功
 		regInfoSend();
 	});
@@ -28,6 +35,7 @@
 		checkInput();
 	});
 
+	// 点击获取验证码--弹出滑动验证--验证通过:发送验证码
 	$('.yzm-button').on('click', function () {
 		if (checkInput()) {
 			tCaptcha.show();
@@ -44,9 +52,11 @@ function getEmailVCode(ticket, randStr) {
 		dataType: "json",
 		success: function (data) {
 			if (data.code == -1) {
-
+				console.log(data.message);
+				$('.yzm .error-message').text(data.message);
 			} else if (data.code == 1) {
 				console.log(data.message);
+				$('.yzm .error-message').text('验证码已发送，5分钟内有效');
 			}
 		}
 	});
@@ -56,7 +66,7 @@ function regInfoSend() {
 	var nickName = $('.form-group:eq(0) input').val().trim();
 	var pwd = $('.form-group:eq(1) input').val();
 	var email = $('.form-group:eq(2) input').val().trim();
-	var yzm = $('.from-group:eq(3) input').val().trim();
+	var yzm = $('.form-group:eq(3) input').val().trim();
 	$.ajax({
 		url: "/register/index",
 		type: "POST",
@@ -65,7 +75,7 @@ function regInfoSend() {
 		success: function (data) {
 			if (data.code == -1) {
 				// 注册失败
-				$('.register-hidden-group:eq(3)').html(data.message);
+				$('.register-hidden-group:eq(3)').html(data.message).addClass('text-error');
 			} else if (data.code == 1) {
 				// 注册成功
 				showRegSuccess();
@@ -78,7 +88,6 @@ function checkInput() {
 	var $nickName = $('.form-group:eq(0)');
 	var $pwd = $('.form-group:eq(1)');
 	var $email = $('.form-group:eq(2)');
-	var $yzm = $('.from-group:eq(3)');
 	if ($nickName.find('input').val().trim() == '') {
 		$nickName.find('.error-message').text('请告诉我你的昵称吧');
 		return false;
@@ -94,17 +103,12 @@ function checkInput() {
 	if ($email.find('input').val() == '') {
 		$email.find('.error-message').text('亲，请填写邮箱号');
 		return false;
-	} else if (!checkEmail($email.find('input').val().trim())) {
-		return false;
-	} else {
-		$email.find('.error-message').text('');
 	}
-	if ($yzm.find('input').val() == '') {
-		$yzm.find('.error-message').text('验证码不能为空');
+	checkEmail($email.find('input').val().trim());
+	if ($email.find('.error-message').text() != '') {
 		return false;
-	} else {
-		$yzm.find('.error-message').text('');
 	}
+	
 	return true;
 }
 
@@ -117,7 +121,6 @@ function showRegSuccess() {
 }
 
 function checkEmail(email) {
-	var isPass = true;
 	$.ajax({
 		url: "/register/checkEmail",
 		type: "POST",
@@ -127,11 +130,14 @@ function checkEmail(email) {
 			if (data.code == -1) {
 				// 邮箱不可用
 				$('.form-group:eq(2)').find('.error-message').text(data.message);
-				isPass = false;
 			} else if (data.code == 1) {
 				// 邮箱可用
+				$('.form-group:eq(2)').find('.error-message').text('');
 			}
 		}
 	});
-	return isPass;
+}
+
+String.prototype.trim = function () {
+	　　return this.replace(/(^\s*)|(\s*$)/g, '');
 }
