@@ -46,7 +46,8 @@
 							<input type="checkbox" name="isRem" value="isRem" />
 							记住我
 							<span>不是自己的电脑上不要勾选此项</span>
-							<a target="_blank" href="/login/findpassword" class="forget-password">找回密码?</a>
+							@*<a target="_blank" href="/login/findpassword" class="forget-password">找回密码?</a>*@
+							@Html.ActionLink("找回密码?", "FindPassword", "Login", null, new { target = "_blank", @class = "forget-password" })
 						</label>
 						<div class="text">
 							<p class="tips"></p>
@@ -54,7 +55,8 @@
 					</li>
 					<li class="btn-box">
 						<a class="btn btn-login">登录</a>
-						<a href="/register" class="btn btn-reg">注册</a>
+						@*<a href="/register" class="btn btn-reg">注册</a>*@
+						@Html.ActionLink("注册", "Index", "Register", null, new { @class = "btn btn-reg" })
 					</li>
 				</ul>
 			</div>

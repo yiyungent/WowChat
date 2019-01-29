@@ -39,7 +39,8 @@
 			<button id="js-btn-reg" class="el-button el-button-full el-button-primary"><span>注册</span></button>
 		</div>
 		<div class="register-hidden-group text-right">
-			<a href="/login">已有账号，直接登录&gt;</a>
+			@*<a href="/login">已有账号，直接登录&gt;</a>*@
+			@Html.ActionLink("已有账号，直接登录&gt;", "Index", "Login")
 		</div>
 	</form>
 </div>
