@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using WowChat.Web.Attribute.AuthenAttr;
+using WowChat.Web.Models.Extend;
 
 namespace WowChat.Web.Controllers
 {
@@ -14,7 +15,7 @@ namespace WowChat.Web.Controllers
         [AuthenLogin]
         public ActionResult Index()
         {
-            if (!string.IsNullOrEmpty(Request.Headers["X-PJAX"]) && Convert.ToBoolean(Request.Headers["X-PJAX"]))
+            if (Request.IsPjaxRequest())
             {
                 // pjax
                 string htmlStr = $"<h3>Headers[\"X-PJAX\"]：{Request.Headers["X-PJAX"]}</h3>";

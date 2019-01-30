@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="ModelExt\User_infoExt.cs" />
     <Compile Include="Models\Enum\User_group_id.cs" />
+    <Compile Include="Models\Extend\RequestExt.cs" />
     <Compile Include="Models\Request\EmailVCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
