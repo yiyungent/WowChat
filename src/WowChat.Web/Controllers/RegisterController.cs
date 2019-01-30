@@ -46,6 +46,7 @@ namespace WowChat.Web.Controllers
                 bool isSuccess = _user_InfoService.RegUser(user_Info);
                 if (isSuccess)
                 {
+                    Session["User"] = user_Info;
                     return Json(new { code = 1, message = "注册成功" });
                 }
                 else

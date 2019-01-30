@@ -139,3 +139,11 @@
 	background: url('../images/scripts/register-title-icon.svg') no-repeat 0;
 	background-size: 36px 34px;
 }
+.yzm-button.is-disabled {
+	color: rgba(0,0,0,.25);
+	background-color: #f5f5f5;
+	border-color: #d9d9d9;
+}
+.yzm-button.is-disabled:hover {
+	cursor: not-allowed;
+}

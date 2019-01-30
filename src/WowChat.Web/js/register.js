@@ -10,6 +10,8 @@
 				console.log("第一次验证 通过");
 				// 发送票据到服务器 -- 获取邮箱验证码
 				getEmailVCode(res.ticket, res.randstr);
+				// 30s后重新获取验证码
+				yzmGetTime($('.yzm-button'));
 			}
 		}
 	);
@@ -108,7 +110,7 @@ function checkInput() {
 	if ($email.find('.error-message').text() != '') {
 		return false;
 	}
-	
+
 	return true;
 }
 
@@ -116,8 +118,21 @@ function showRegSuccess() {
 	var register_title = '<h2 class="register-title"><span>注册成功！</span><h2>';
 	$(register_title).insertAfter(".title-line");
 	$(".title-line").remove();
-	var register_box_inner = '<div style="text-align: center;font-size:16px">还剩5s跳转至登录</div>';
-	$(".register-box").empty().append(register_box_inner);
+	var register_box_inner = '<div style="text-align: center;font-size:16px">还剩{0}s跳转</div>';
+	var sec = 3;
+	$(".register-box").html(register_box_inner.format(sec));
+	setTimeout(function () {
+		var returnUrl = getQueryString('returnUrl');
+		if (returnUrl != null) {
+			window.location.href = returnUrl;
+		} else {
+			window.location.href = '/';
+		}
+	}, sec * 1000);
+	setInterval(function () {
+		sec--;
+		$(".register-box").html(register_box_inner.format(sec));
+	}, 1000);
 }
 
 function checkEmail(email) {
@@ -138,6 +153,44 @@ function checkEmail(email) {
 	});
 }
 
-String.prototype.trim = function () {
-	　　return this.replace(/(^\s*)|(\s*$)/g, '');
+var yzmSec = 30;
+/**
+ * 30s后获取验证码
+ */
+function yzmGetTime($obj) {
+	if (yzmSec == 0) {
+		$obj.removeAttr("disabled");
+		$obj.text("获取验证码");
+		$obj.removeClass("is-disabled");
+		yzmSec = 30;
+		return;
+	} else {
+		$obj.attr("disabled", "disabled");
+		$obj.text(yzmSec + "s后重新获取");
+		$obj.addClass("is-disabled");
+		yzmSec--;
+	}
+	setTimeout(function () {
+		yzmGetTime($obj)
+	}, 1000)
 }
+
+function getQueryString(name) {
+	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null) {
+		return unescape(r[2]);
+	}
+	return null;
+}
+
+String.prototype.trim = function () {
+	return this.replace(/(^\s*)|(\s*$)/g, '');
+}
+
+String.prototype.format = function () {
+	var args = arguments;
+	return this.replace(/\{(\d+)\}/g, function (s, i) {
+		return args[i];
+	});
+};
