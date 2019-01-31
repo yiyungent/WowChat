@@ -11,6 +11,8 @@ namespace WowChat.Web
     {
         protected void Application_Start()
         {
+            // 隐藏 ASP.NET MVC 版本
+            MvcHandler.DisableMvcResponseHeader = true;
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
